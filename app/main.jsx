@@ -6,7 +6,6 @@ import App from './App';
 import { AuthProvider } from './context/AuthContext';
 import './app.css';
 
-// 🎨 تم سفارشی برای کل پروژه
 const theme = createTheme({
   fontFamily: 'Inter, sans-serif',
   primaryColor: 'blue',
