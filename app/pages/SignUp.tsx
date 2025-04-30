@@ -10,7 +10,7 @@ import {
   Group,
 } from '@mantine/core';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 export default function SignUp() {
   const { login } = useAuth();
