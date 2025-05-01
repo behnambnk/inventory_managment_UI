@@ -1,26 +1,18 @@
-import { Box, Container, Center, Paper, Stack, Title, Text } from '@mantine/core';
+import { Box, Stack, Title, Text } from '@mantine/core';
+import '../app.css'; // اطمینان حاصل کنید که این فایل استایل در پروژه‌ی شما وجود دارد
 
 export default function Log() {
   return (
-    <Box
-      style={{
-        minHeight: '100vh',
-        background: 'linear-gradient(to right, #ffffff 50%, #e0f7fa 50%)',
-        padding: '80px 0',
-      }}
-    >
-      <Container size="xs">
-        <Center style={{ minHeight: '80vh' }}>
-          <Paper shadow="xl" p="xl" radius="lg" withBorder>
-            <Stack gap={40}>
-              <Title order={2}>Log Page</Title>
-              <Text size="lg" color="dimmed">
-                This is the Log page.
-              </Text>
-            </Stack>
-          </Paper>
-        </Center>
-      </Container>
+    <Box className="login-container">
+      <div className="login-card">
+        <div className="login-title">Log Page</div>
+
+        <Stack gap="md">
+          <Text size="lg" color="white">
+            This is the Log page.
+          </Text>
+        </Stack>
+      </div>
     </Box>
   );
 }

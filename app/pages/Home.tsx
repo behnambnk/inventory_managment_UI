@@ -1,21 +1,17 @@
 import {
   TextInput,
   PasswordInput,
-  Button,
-  Paper,
   Title,
-  Text,
-  Stack,
   Box,
-  Group,
+  Stack,
 } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Link } from 'react-router'; // ✅ اصلاح شد
+import { Link } from 'react-router';
+import '../app.css'; // ✅ ایمپورت استایل
 
 export default function Home() {
   const { user, login, logout } = useAuth();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,95 +34,55 @@ export default function Home() {
     login({ email });
   };
 
-
   if (isLoggedIn) {
     return (
-      <Box
-        style={{
-          height: '100vh',
-          width: '100vw',
-          backgroundColor: '#fff',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <Box className="login-container" style={{ background: '#fff' }}>
         <Stack align="center" gap={24}>
           <Title order={2}>Welcome</Title>
-          <Text size="lg">You are logged in as {user?.email || 'Unknown'}</Text>
-          <Text size="sm" color="dimmed">
+          <p>You are logged in as {user?.email || 'Unknown'}</p>
+          <p style={{ fontSize: '0.9rem', opacity: 0.6 }}>
             You will be automatically logged out in 10 minutes.
-          </Text>
+          </p>
         </Stack>
       </Box>
     );
   }
 
-  // فرم ورود
   return (
-    <Box
-      style={{
-        position: 'relative',
-        height: '100vh',
-        width: '100vw',
-        background: 'linear-gradient(to right, #ffffff 50%, #e0f7fa 50%)',
-      }}
-    >
-      <Paper
-        shadow="xl"
-        p="xl"
-        radius="lg"
-        withBorder
-        style={{
-          width: 400,
-          position: 'absolute',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          right: '10%',
-        }}
-      >
-        <Stack gap="lg">
-          <Group justify="center">
-            <Title order={2} style={{ fontWeight: 'bold' }}>
-              Sign In
-            </Title>
-          </Group>
+    <Box className="login-container">
+      <div className="login-card">
+        <div className="login-title">Sign In</div>
 
+        <Stack gap="md">
           <TextInput
-            label="Email"
-            placeholder="you@example.com"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            label=""
+            withAsterisk={false}
+            styles={{ input: { fontWeight: 'bold' } }}
           />
 
           <PasswordInput
-            label="Password"
-            placeholder="Your password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            label=""
+            withAsterisk={false}
+            styles={{ input: { fontWeight: 'bold' } }}
           />
 
-          <Button fullWidth onClick={handleLogin} color="blue">
+          <button className="gradient-button" onClick={handleLogin}>
             Continue
-          </Button>
+          </button>
 
-          <Group justify="center">
-            <Text size="sm" color="dimmed">
-              Don't have an account?{' '}
-              <Text
-                component={Link}
-                to="/signup"
-                span
-                style={{ textDecoration: 'underline', color: '#1c7ed6', fontWeight: 500 }}
-              >
-                Sign up
-              </Text>
-            </Text>
-          </Group>
+          <div className="link-text">
+            Don't have an account? <Link to="/signup">Sign up</Link>
+          </div>
         </Stack>
-      </Paper>
+      </div>
     </Box>
   );
 }
