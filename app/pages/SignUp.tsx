@@ -14,7 +14,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router';
 import '../app.css';
-
+import salyImg from '../asset/Saly1.png';
 export default function SignUp() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export default function SignUp() {
     <div className="container">
    
       <div className="left">
-        <img src="/rocket.png" alt="Rocket" />
+         <img src={salyImg} alt="Saly" style={{ maxWidth: '100%' }} />
       </div>
 
 
@@ -58,7 +58,7 @@ export default function SignUp() {
             required
             size="md"
             classNames={{ input: 'input' }}
-            styles={{ input: { height: '48px', borderRadius: 8} }}
+            styles={{ input: { height: '48px', borderRadius:0} }}
           />
 
           <TextInput
@@ -68,7 +68,7 @@ export default function SignUp() {
             required
             size="md"
             classNames={{ input: 'input' }}
-            styles={{ input: { height: '48px', borderRadius: 8 } }}
+            styles={{ input: { height: '48px', borderRadius: 0} }}
           />
 
           <Button

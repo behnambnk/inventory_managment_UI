@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-devtools';
 import { MantineProvider } from '@mantine/core';
-import App from './App';
+import App from './app';
 import { AuthProvider } from './context/AuthContext';
 import './app.css';
 

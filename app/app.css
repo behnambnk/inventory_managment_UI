@@ -18,7 +18,7 @@ a {
 .container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 150vh;
 }
 
 @media (max-width: 768px) {
@@ -43,10 +43,11 @@ a {
 
 .left {
   flex: 1;
-  background-color: #3c1df3;
+  background-color: #4B429F;
   display: center;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
+  
 }
 
 .left img {
@@ -88,12 +89,13 @@ a {
   margin: 12px auto;        
   width: 60%;       
   margin: 12px auto;        
-  width: 60%;       
+  width: 60%;   
+      
   
 }
 
 .gradient-button {
-  background: linear-gradient(to right, #6a11cb, #2575fc);
+  background: linear-gradient(to right, #4B429F, #4B429F);
   border: none;
   color: white;
   padding: 12px;
@@ -101,6 +103,7 @@ a {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  border-radius: 0px;
 
   width: 60%;         
   margin: 16px auto;  
@@ -158,6 +161,7 @@ a {
   padding: 8px;
   font-size: 14px;
   transition: all 0.2s ease;
+  border-radius: 0;
 
   margin: 12px auto;         
   width: 60%;                
@@ -165,6 +169,7 @@ a {
 
 
 .input:focus {
-  border-color: #3b5bdb;
+  border-color: 4B429F;
   box-shadow: 0 0 0 2px rgba(76, 110, 245, 0.2);
 }
+

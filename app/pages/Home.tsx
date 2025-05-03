@@ -1,18 +1,24 @@
 import {
   TextInput,
   PasswordInput,
+  Textarea,
   Title,
   Stack,
   Group,
   Button,
   Anchor,
   Image,
+  FileInput,
   Box,
 } from '@mantine/core';
+import salyImg from '../asset/Saly1.png'; // مسیر دقیق به عکس
+
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router';
 import '../app.css';
+
+
 
 export default function Home() {
   const { user, login, logout } = useAuth();
@@ -27,7 +33,7 @@ export default function Home() {
     if (user) {
       timeoutId = setTimeout(() => {
         logout();
-      }, 10 * 60 * 1000); 
+      }, 10 * 60 * 1000);
     }
 
     return () => clearTimeout(timeoutId);
@@ -40,91 +46,108 @@ export default function Home() {
 
   if (isLoggedIn) {
     return (
-      <Box className="login-container" style={{ background: '#fff' }}>
-        <Stack align="center" gap={24}>
-          <Title order={2}>Welcome</Title>
-          <p style={{ fontSize: '1.1rem' }}>
-            You are logged in as <strong>{user?.email || 'Unknown'}</strong>
-          </p>
-          <p style={{ fontSize: '0.95rem', opacity: 0.6 }}>
-            You will be automatically logged out in 10 minutes.
-          </p>
-        </Stack>
+      <Box className="container">
+        {/* تصویر سمت چپ */}
+        <div className="left">
+        <img src={salyImg} alt="Saly" style={{ maxWidth: '100%' }} />
+        </div>
+
+        {/* فرم محصول سمت راست */}
+        <div className="right">
+          <div className="nav">
+            <Anchor href="#">Home</Anchor>
+            <Anchor href="#">About us</Anchor>
+            <Anchor href="#">Contact us</Anchor>
+          </div>
+
+          <Title order={2} className="login-title">
+            Submit a New Product
+          </Title>
+
+          <Stack gap="md">
+            <TextInput
+              placeholder="e.g. 1. Cut the panel"
+              label="Item Name"
+              classNames={{ input: 'input' }}
+            />
+
+            <Textarea
+              placeholder="Enter a description about your step 1"
+              label="Description - Optional"
+              autosize
+              minRows={2}
+              classNames={{ input: 'input' }}
+            />
+
+            <TextInput
+              placeholder="e.g. $49.99"
+              label="Price"
+              classNames={{ input: 'input' }}
+            />
+
+            <TextInput
+              placeholder="e.g. 2"
+              label="QTY"
+              classNames={{ input: 'input' }}
+            />
+
+            <FileInput
+              label="Image"
+              placeholder="Click to browse or drag and drop your files"
+              classNames={{ input: 'input' }}
+            />
+
+            <Button className="gradient-button">Submit</Button>
+          </Stack>
+        </div>
       </Box>
     );
   }
 
+  // 🔐 فرم ورود وقتی وارد نشده
   return (
     <div className="container">
-   
+      {/* تصویر سمت چپ */}
       <div className="left">
-
+      <img src={salyImg} alt="Saly" style={{ maxWidth: '100%' }} />
       </div>
 
-    
+      {/* فرم ورود سمت راست */}
       <div className="right">
-  
         <div className="nav">
           <Anchor href="#">Home</Anchor>
           <Anchor href="#">About us</Anchor>
           <Anchor href="#">Contact us</Anchor>
-          <Anchor href="#">Post a project</Anchor>
         </div>
 
-        
         <Title order={2} className="login-title">
-  Login to your account
-</Title>
+          Login to your account
+        </Title>
 
-
-        
-
-        <Stack gap={0}>
-  <TextInput
-    placeholder="Email"
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
-    required
-    size="md"
-    classNames={{ input: 'input' }}
-    styles={{
-      input: {
-        height: '48px',
-        borderRadius: 8,
-      },
-    }}
-  />
-
-  <TextInput
-    placeholder="Password"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    required
-    size="md"
-    mt={100} 
-    classNames={{ input: 'input' }}
-    styles={{
-      input: {
-        height: '48px',
-        borderRadius: 8,
-      },
-    }}
-  />
-<Group justify="space-between" style={{ marginTop: '1rem', marginBottom: '0.75rem' }}>
-<Anchor href="#" size="sm" className="forgot-link">
-  Forgot password?
-
-  </Anchor>
-</Group>
-
-
-          <Button
-            fullWidth
+        <Stack gap="md">
+          <TextInput
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
             size="md"
-            mt="sm"
-            className="gradient-button"
-            onClick={handleLogin}
-          >
+            classNames={{ input: 'input' }}
+          />
+
+          <TextInput
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            size="md"
+            classNames={{ input: 'input' }}
+          />
+
+          <Anchor href="#" size="sm" className="forgot-link">
+            Forgot password?
+          </Anchor>
+
+          <Button className="gradient-button" onClick={handleLogin}>
             Log in with Email
           </Button>
 
