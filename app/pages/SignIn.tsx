@@ -1,5 +1,5 @@
 import { Box, Stack, Title, Text } from '@mantine/core';
-import '../app.css'; // اطمینان حاصل کنید که این فایل استایل در پروژه‌ی شما وجود دارد
+import '../app.css'; 
 
 export default function Log() {
   return (
@@ -8,7 +8,7 @@ export default function Log() {
         <div className="login-title">Log Page</div>
 
         <Stack gap="md">
-          <Text size="lg" color="white">
+          <Text size="lg" color="white">a
             This is the Log page.
           </Text>
         </Stack>

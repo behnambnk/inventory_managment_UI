@@ -1,14 +1,19 @@
-import { useState } from 'react';
 import {
   TextInput,
   PasswordInput,
   Title,
-  Box,
   Stack,
+  Group,
+  Button,
+  Anchor,
+  Box,
+  Text,
 } from '@mantine/core';
+import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router';
-import '../app.css'; // استایل فانتزی
+import { Link } from 'react-router';
+import '../app.css';
 
 export default function SignUp() {
   const { login } = useAuth();
@@ -17,16 +22,33 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!email || !password) return;
-    login({ email });
+    await login({ email }); 
+    setPassword('');
     navigate('/');
   };
 
   return (
-    <Box className="login-container">
-      <div className="login-card">
-        <div className="login-title">Sign Up</div>
+    <div className="container">
+   
+      <div className="left">
+        <img src="/rocket.png" alt="Rocket" />
+      </div>
+
+
+      <div className="right">
+        <div className="nav">
+          <Anchor href="#">Home</Anchor>
+          <Anchor href="#">About us</Anchor>
+          <Anchor href="#">Contact us</Anchor>
+          <Anchor href="#">Post a project</Anchor>
+        </div>
+
+        <Title order={2} className="login-title">
+          Create your account
+        </Title>
+   
 
         <Stack gap="md">
           <TextInput
@@ -34,24 +56,36 @@ export default function SignUp() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            label=""
-            withAsterisk={false}
+            size="md"
+            classNames={{ input: 'input' }}
+            styles={{ input: { height: '48px', borderRadius: 8} }}
           />
 
-          <PasswordInput
+          <TextInput
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            label=""
-            withAsterisk={false}
+            size="md"
+            classNames={{ input: 'input' }}
+            styles={{ input: { height: '48px', borderRadius: 8 } }}
           />
 
-          <button className="gradient-button" onClick={handleSubmit}>
+          <Button
+            fullWidth
+            size="md"
+            className="gradient-button"
+            onClick={handleSubmit}
+          >
             Continue
-          </button>
+          </Button>
+
+          <Box className="link-text">
+  Already have an account?{' '}
+  <Anchor component={Link} to="/">Log in</Anchor>
+</Box>
         </Stack>
       </div>
-    </Box>
+    </div>
   );
 }
